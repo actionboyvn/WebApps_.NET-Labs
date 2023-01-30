@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Lab102.Models.Article>
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+<link href="css/site.css" rel="stylesheet" type="text/css" />
+
+<h1>@ViewData["Category"]</h1>
+
+<p>
+
+</p>
+@if (@Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <img class="thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" />
+                    </td>
+                    <td>
+                        |
+                        <a asp-action="AddToCart" asp-route-id="@item.Id">Add to cart</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3 style="color:red">No products found</h3>
+
+}
+<div>
+    <a asp-action="Index">Back to Shop</a>
+</div>

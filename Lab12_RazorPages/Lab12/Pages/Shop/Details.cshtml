@@ -1,0 +1,56 @@
+﻿@page
+@model Lab12.Pages.Shop.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<link href="css/site.css" rel="stylesheet" type="text/css" />
+
+<h1>@ViewData["Category"]</h1>
+@if(@Model.Article.Count() > 0)
+{ 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Image)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Article)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        <img class="thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} else
+            {
+                <h4 style="color:red">No articles.</h4>
+            }
+<div>
+    <a asp-page="./Index">Back to Shop</a>
+</div>
+
